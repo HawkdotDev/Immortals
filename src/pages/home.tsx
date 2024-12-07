@@ -1,7 +1,9 @@
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
+import { motion } from "framer-motion";
+import ArrowRight from "../assets/icons/ArrowRight.svg";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+
+import promoVideo from "../assets/videos/promo.mp4";
 
 export function Home() {
   return (
@@ -9,14 +11,25 @@ export function Home() {
       {/* Hero Section */}
       <div className="relative h-screen">
         <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&q=80"
-            alt="Hero background"
+          <video
+            src={promoVideo}
+            autoPlay
+            loop
+            muted
             className="w-full h-full object-cover"
-          />
+            onTimeUpdate={(e) => {
+              const video = e.target as HTMLVideoElement; // Typecast to HTMLVideoElement
+              if (video.currentTime >= video.duration - 5) {
+                video.currentTime = 0; // Restart the video
+              }
+            }}
+          >
+            Your browser does not support the video tag.
+          </video>
+
           <div className="absolute inset-0 bg-black/60" />
         </div>
-        
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -25,32 +38,31 @@ export function Home() {
             className="max-w-2xl"
           >
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-              Welcome to Fallen Divine
+              Welcome to Fallen Divines
             </h1>
             <p className="text-xl text-neutral-200 mb-8">
-              Discover our unique collection of retro-punk inspired fashion and accessories.
-              Where rebellion meets luxury.
+              Discover our unique collection of pop-culture inspired fashion and
+              accessories. Where rebellion meets luxury.
             </p>
             <div className="flex space-x-4">
               <Button
-                asChild
+                // asChild
                 size="lg"
                 className="bg-white text-black hover:bg-white/90"
               >
-                <Link to="/products">
+                <Link to="/products" className="flex items-center">
                   Shop Now
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  {/* <ArrowRight className="ml-2 h-4 w-4" /> */}
+                  <img src={ArrowRight} alt="" className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button
-                asChild
+                // asChild
                 size="lg"
                 variant="outline"
                 className="border-white text-white hover:bg-white/10"
               >
-                <Link to="/categories">
-                  Browse Categories
-                </Link>
+                <Link to="/categories">Browse Categories</Link>
               </Button>
             </div>
           </motion.div>
@@ -96,7 +108,7 @@ export function Home() {
                         {collection.title}
                       </h3>
                       <Button
-                        asChild
+                        // asChild
                         variant="outline"
                         className="border-white text-white hover:bg-white/10"
                       >
@@ -116,18 +128,21 @@ export function Home() {
 
 const featuredCollections = [
   {
-    title: 'Vintage Punk',
-    image: 'https://images.unsplash.com/photo-1512331455279-c8ae8178f586?auto=format&fit=crop&q=80',
-    link: '/categories/vintage-punk',
+    title: "Vintage Star",
+    image:
+      "https://images.unsplash.com/photo-1512331455279-c8ae8178f586?auto=format&fit=crop&q=80",
+    link: "/categories/vintage-star",
   },
   {
-    title: 'Modern Rebel',
-    image: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80',
-    link: '/categories/modern-rebel',
+    title: "Modern Rebel",
+    image:
+      "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80",
+    link: "/categories/modern-rebel",
   },
   {
-    title: 'Street Luxe',
-    image: 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&q=80',
-    link: '/categories/street-luxe',
+    title: "Street Luxe",
+    image:
+      "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&q=80",
+    link: "/categories/street-luxe",
   },
 ];

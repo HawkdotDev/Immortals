@@ -1,14 +1,22 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, Menu, X, Moon, Sun } from 'lucide-react';
-import { Button } from '../ui/button';
-import { useStore } from '@/lib/store';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+
+// import ShoppingCart from "../../assets/icons/shopping-cart.svg";
+import Menu from "../../assets/icons/menu.svg";
+import X from "../../assets/icons/x.svg";
+import Sun from "../../assets/icons/sun.svg";
+import Moon from "../../assets/icons/moon.svg";
+
+import { Button } from "../ui/button";
+import { useStore } from "@/lib/store";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { cart, theme, toggleTheme } = useStore();
   const cartItemsCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+  const strokeColor = theme === 'light' ? '#000' : '#fff';
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-lg border-b border-neutral-200 dark:border-neutral-800">
@@ -16,18 +24,27 @@ export function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="text-2xl font-bold tracking-tighter">
-              Fallen Divine
+              Fallen Divines
             </Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/products" className="hover:text-neutral-600 dark:hover:text-neutral-300">
+            <Link
+              to="/products"
+              className="hover:text-neutral-600 dark:hover:text-neutral-300"
+            >
               Products
             </Link>
-            <Link to="/categories" className="hover:text-neutral-600 dark:hover:text-neutral-300">
+            <Link
+              to="/categories"
+              className="hover:text-neutral-600 dark:hover:text-neutral-300"
+            >
               Categories
             </Link>
-            <Link to="/about" className="hover:text-neutral-600 dark:hover:text-neutral-300">
+            <Link
+              to="/about"
+              className="hover:text-neutral-600 dark:hover:text-neutral-300"
+            >
               About
             </Link>
           </div>
@@ -47,13 +64,33 @@ export function Navbar() {
                   exit={{ y: 20, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  {theme === 'dark' ? <Sun /> : <Moon />}
+                  {theme === "dark" ? (
+                    <img src={Sun} alt="" className="h-6 w-6" />
+                  ) : (
+                    <img src={Moon} alt="" className="h-6 w-6" />
+                  )}
                 </motion.div>
               </AnimatePresence>
             </Button>
 
             <Link to="/cart" className="relative">
-              <ShoppingCart className="w-6 h-6" />
+              {/* <img src={ShoppingCart} alt="" className="h-6 w-6" /> */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke={strokeColor}
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="lucide lucide-shopping-cart"
+              >
+                <circle cx="8" cy="21" r="1" />
+                <circle cx="19" cy="21" r="1" />
+                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+              </svg>
               {cartItemsCount > 0 && (
                 <motion.span
                   initial={{ scale: 0 }}
@@ -71,7 +108,11 @@ export function Navbar() {
                 size="icon"
                 onClick={() => setIsOpen(!isOpen)}
               >
-                {isOpen ? <X /> : <Menu />}
+                {isOpen ? (
+                  <img src={X} alt="" className="h-6 w-6" />
+                ) : (
+                  <img src={Menu} alt="" className="h-6 w-6" />
+                )}
               </Button>
             </div>
           </div>
@@ -82,7 +123,7 @@ export function Navbar() {
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden"
           >

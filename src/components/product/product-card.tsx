@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { ShoppingCart, Heart } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useStore, type Product } from '@/lib/store';
-
+import ShoppingCart from "../../assets/icons/shopping-cart.svg";
+import Heart from "../../assets/icons/heart.svg";
 interface ProductCardProps {
   product: Product;
 }
@@ -29,7 +29,7 @@ export function ProductCard({ product }: ProductCardProps) {
           size="icon"
           className="rounded-full bg-white/80 dark:bg-black/80 backdrop-blur-sm"
         >
-          <Heart className="w-5 h-5" />
+          <img src={Heart} alt="" className="h-4 w-4" />
         </Button>
       </div>
       <div className="p-4">
@@ -43,7 +43,7 @@ export function ProductCard({ product }: ProductCardProps) {
             onClick={() => addToCart(product)}
             className="flex items-center space-x-2"
           >
-            <ShoppingCart className="w-4 h-4" />
+            <img src={ShoppingCart} alt="" className="h-4 w-4" />
             <span>Add to Cart</span>
           </Button>
         </div>

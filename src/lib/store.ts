@@ -60,7 +60,7 @@ export const useStore = create<StoreState>()(
         })),
     }),
     {
-      name: 'fallen-divine-store',
+      name: 'fallen-divines-store',
     }
   )
 );

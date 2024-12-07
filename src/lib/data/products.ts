@@ -14,7 +14,7 @@ export const products: Product[] = [
     price: 299.99,
     image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&q=80',
     description: 'Classic leather jacket with distressed finish and metal hardware.',
-    category: 'vintage-punk'
+    category: 'vintage-star'
   },
   {
     id: '2',
@@ -22,7 +22,7 @@ export const products: Product[] = [
     price: 189.99,
     image: 'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&q=80',
     description: 'Heavy-duty combat boots with silver studs and reinforced sole.',
-    category: 'vintage-punk'
+    category: 'vintage-star'
   },
   {
     id: '3',

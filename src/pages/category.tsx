@@ -1,30 +1,33 @@
-import { useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ProductCard } from '@/components/product/product-card';
-import { products } from '@/lib/data/products';
+import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ProductCard } from "@/components/product/product-card";
+import { products } from "@/lib/data/products";
 
 const categoryInfo = {
-  'vintage-punk': {
-    title: 'Vintage Punk',
-    description: 'Classic punk aesthetics with a modern twist',
-    image: 'https://images.unsplash.com/photo-1512331455279-c8ae8178f586?auto=format&fit=crop&q=80'
+  "vintage-star": {
+    title: "Vintage Star",
+    description: "Classic star aesthetics with a modern twist",
+    image:
+      "https://images.unsplash.com/photo-1512331455279-c8ae8178f586?auto=format&fit=crop&q=80",
   },
-  'modern-rebel': {
-    title: 'Modern Rebel',
-    description: 'Contemporary streetwear with an edge',
-    image: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80'
+  "modern-rebel": {
+    title: "Modern Rebel",
+    description: "Contemporary streetwear with an edge",
+    image:
+      "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80",
   },
-  'street-luxe': {
-    title: 'Street Luxe',
-    description: 'Luxury meets street culture',
-    image: 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&q=80'
-  }
+  "street-luxe": {
+    title: "Street Luxe",
+    description: "Luxury meets street culture",
+    image:
+      "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&q=80",
+  },
 };
 
 export function Category() {
   const { categoryId } = useParams();
   const category = categoryInfo[categoryId as keyof typeof categoryInfo];
-  const categoryProducts = products.filter(p => p.category === categoryId);
+  const categoryProducts = products.filter((p) => p.category === categoryId);
 
   if (!category) {
     return (

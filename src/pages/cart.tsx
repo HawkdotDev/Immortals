@@ -1,8 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trash2, Plus, Minus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useStore } from '@/lib/store';
+
+import Trash2 from '../assets/icons/trash-2.svg';
+import Plus from '../assets/icons/plus.svg';
+import Minus from '../assets/icons/minus.svg';
 
 export function Cart() {
   const { cart, removeFromCart, updateQuantity } = useStore();
@@ -16,7 +19,7 @@ export function Cart() {
           <p className="text-neutral-600 dark:text-neutral-400 mb-8">
             Start shopping to add items to your cart
           </p>
-          <Button asChild size="lg">
+          <Button size="lg">
             <Link to="/products">Browse Products</Link>
           </Button>
         </div>
@@ -59,7 +62,7 @@ export function Cart() {
                         size="icon"
                         onClick={() => updateQuantity(item.id, Math.max(0, item.quantity - 1))}
                       >
-                        <Minus className="w-4 h-4" />
+                        <img src={Minus} alt="" className="h-4 w-4" />
                       </Button>
                       <span className="w-8 text-center">{item.quantity}</span>
                       <Button
@@ -67,7 +70,7 @@ export function Cart() {
                         size="icon"
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
                       >
-                        <Plus className="w-4 h-4" />
+                        <img src={Plus} alt="" className="h-4 w-4" />
                       </Button>
                     </div>
                   </div>
@@ -77,7 +80,7 @@ export function Cart() {
                     onClick={() => removeFromCart(item.id)}
                     className="text-red-500"
                   >
-                    <Trash2 className="w-4 h-4" />
+                    <img src={Trash2} alt="" className="h-4 w-4" />
                   </Button>
                 </motion.div>
               ))}
