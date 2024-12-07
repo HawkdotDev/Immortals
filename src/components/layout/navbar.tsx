@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-// import ShoppingCart from "../../assets/icons/shopping-cart.svg";
 import Menu from "../../assets/icons/menu.svg";
 import X from "../../assets/icons/x.svg";
 import Sun from "../../assets/icons/sun.svg";
 import Moon from "../../assets/icons/moon.svg";
+import logo from "../../assets/icons/TR.svg";
 
 import { Button } from "../ui/button";
 import { useStore } from "@/lib/store";
@@ -16,13 +16,14 @@ export function Navbar() {
   const { cart, theme, toggleTheme } = useStore();
   const cartItemsCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
-  const strokeColor = theme === 'light' ? '#000' : '#fff';
+  const strokeColor = theme === "light" ? "#000" : "#fff";
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-lg border-b border-neutral-200 dark:border-neutral-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
+            <img src={logo} alt="" className="h-[22px] w-[22px] mr-2" />
             <Link to="/" className="text-2xl font-bold tracking-tighter">
               Fallen Divines
             </Link>
@@ -74,7 +75,6 @@ export function Navbar() {
             </Button>
 
             <Link to="/cart" className="relative">
-              {/* <img src={ShoppingCart} alt="" className="h-6 w-6" /> */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
